@@ -1,0 +1,96 @@
+{
+  "log": {
+    "loglevel": "debug"
+  },
+  "reverse":{ 
+    "portals":[  
+      {  
+        "tag":"clawcloud",
+        "domain":"clawcloud.host"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "port": 443,
+      "listen": "0.0.0.0",
+      "protocol": "hysteria2",
+      "tag": "inbound_hysteria2_reverse_and_tunnel",
+      "streamSettings": {
+        "network": "hysteria2",
+        "security": "tls",
+        "tlsSettings": {
+          "alpn": [
+            "h3"
+          ],
+          "certificates": [
+            {
+              "certificateFile": "/app/cert",
+              "keyFile": "/app/key"
+            }
+          ]
+        },
+        "hy2Settings": {
+          "password": "zheshiyitiaohenchangdemima",
+          "use_udp_extension": true
+        }
+      }
+    },
+    {
+            "listen": "0.0.0.0",
+            "port": 443,
+            "protocol": "vless",
+            "tag": "inbound_vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "96822e32-e829-4354-9e45-98fb0912ce81",
+                        "email": "mail@example.com"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                    "path": "/96822e32-e829-4354-9e45-98fb0912ce81"
+                }
+            }
+        }
+
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "type":"field",
+        "inboundTag":[  
+          "inbound_vless"
+        ],
+        "outboundTag":"clawcloud"
+      },
+      {
+        "type":"field",
+        "inboundTag":[  
+          "inbound_hysteria2_reverse_and_tunnel"
+        ],
+        "domain":[  
+          "full:clawcloud.host"
+        ],
+        "outboundTag":"clawcloud"
+      },
+      {
+        "type":"field",
+        "inboundTag":[  
+          "inbound_hysteria2_reverse_and_tunnel"
+        ],
+        "outboundTag":"direct"
+      }
+    ]
+  }
+}
