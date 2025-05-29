@@ -7,7 +7,7 @@
       {  
         "tag":"clawcloud",
         "domain":"clawcloud.host"
-      },
+      }
     ]
   },
   "inbounds": [
