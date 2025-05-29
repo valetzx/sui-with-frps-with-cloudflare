@@ -1,3 +1,3 @@
 #!/bin/sh
-./frps -c ./frps.toml & ./sui migrate 
-./sui
+./sui migrate
+./server run -c server.json
