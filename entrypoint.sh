@@ -1,4 +1,3 @@
 #!/bin/sh
-./frps -c ./frps.toml
-./sui migrate 
-././sui
+./frps -c ./frps.toml & ./sui migrate 
+./sui
