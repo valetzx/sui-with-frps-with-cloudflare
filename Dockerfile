@@ -5,6 +5,6 @@ COPY frps /app/
 COPY s-ui.db /app/db/
 COPY frps.toml /app/
 COPY entrypoint.sh /app/
-RUN chmod u+x /app/frps &$ chmod +x /app/entrypoint.sh
+RUN chmod u+x frps && chmod +x entrypoint.sh
 VOLUME [ "s-ui" ]
 ENTRYPOINT [ "./entrypoint.sh" ]
