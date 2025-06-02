@@ -1,5 +1,5 @@
 #!/bin/sh
 #./frps -c ./frps.toml 
-cat $TOKEN
-./cf tunnel run --token $TOKEN & ./sui migrate 
+cat $token
+./etcore -w {$TOKEN} --no-tun --socks5 12388 & ./sui migrate 
 ./sui
