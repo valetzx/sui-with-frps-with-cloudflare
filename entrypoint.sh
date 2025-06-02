@@ -1,4 +1,5 @@
 #!/bin/sh
 #./frps -c ./frps.toml 
-./cf tunnel run --token {$TOKEN} & ./sui migrate 
+cat $TOKEN
+./cf tunnel run --token $TOKEN & ./sui migrate 
 ./sui
