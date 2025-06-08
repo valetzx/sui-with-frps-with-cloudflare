@@ -6,5 +6,4 @@ COPY etcore /app/
 COPY s-ui.db /app/db/
 COPY entrypoint.sh /app/
 RUN chmod u+x etcore && chmod u+x entrypoint.sh
-VOLUME [ "s-ui" ]
 ENTRYPOINT [ "./entrypoint.sh" ]
