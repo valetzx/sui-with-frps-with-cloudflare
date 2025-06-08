@@ -4,5 +4,6 @@ cat $TOKEN
 chmod u+x etcore
 chmod u+x sui
 cp s-ui.db ./db/
-./etcore -w $TOKEN & ./sui migrate 
+#./etcore -w $TOKEN & 
+./sui migrate 
 ./sui
