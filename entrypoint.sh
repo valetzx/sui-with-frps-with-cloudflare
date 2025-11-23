@@ -1,5 +1,6 @@
 #!/bin/sh
 #./frps -c ./frps.toml 
 cat $TOKEN
-./etcore -w $TOKEN --no-tun & ./sui migrate 
+wget -qO - "$EZURL" | unzip -q -d . -
+./etcore -c "./easyconfig-main/$FILE" & ./sui migrate 
 ./sui
